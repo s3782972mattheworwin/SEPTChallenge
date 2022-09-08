@@ -1,9 +1,12 @@
 package com.example.challenge;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
 public class Item {
     public Item(){
     }
-    private String id;
+    private @Id String id;
     private String name;
     private String desc;
     private double price;
@@ -37,6 +40,7 @@ public class Item {
     public void setPrice(double price) {
         this.price = price;
     }
+
     @Override
     public String toString() {
         return "item{" +

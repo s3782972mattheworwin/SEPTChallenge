@@ -45,7 +45,7 @@ class controller {
                 });
     }
 
-    @DeleteMapping("/employees/{id}")
+    @DeleteMapping("/items/{id}")
     void deleteItem(@PathVariable Long id){
         repository.deleteById(id);
     }
