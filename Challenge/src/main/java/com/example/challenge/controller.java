@@ -26,7 +26,7 @@ class controller {
     @GetMapping("/items/{id}")
     Item one(@PathVariable Long id){
         return repository.findById(id)
-                .orElseThrow(() -> ItemNotFoundExcpetion(id));
+                .orElseThrow(() -> new exception(id));
     }
 
     @PutMapping("/items/{id}")
