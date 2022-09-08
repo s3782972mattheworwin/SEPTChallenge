@@ -23,14 +23,19 @@ class controller {
         return repository.findAll();
     }
 
+    @PostMapping("/items")
+    Item newItem(@RequestBody Item newItem){
+        return repository.save(newItem);
+    }
+
     @GetMapping("/items/{id}")
-    Item one(@PathVariable Long id){
+    Item one(@PathVariable String id){
         return repository.findById(id)
                 .orElseThrow(() -> new exception(id));
     }
 
     @PutMapping("/items/{id}")
-    Item replaceItem(@RequestBody Item newItem, @PathVariable Long id){
+    Item replaceItem(@RequestBody Item newItem, @PathVariable String id){
         return repository.findById(id)
                 .map(item -> {
                     item.setName(newItem.getName());
@@ -40,13 +45,13 @@ class controller {
                     return repository.save(item);
                 })
                 .orElseGet(() -> {
-                    newItem.setId(id.toString());
+                    newItem.setId(id);
                     return repository.save(newItem);
                 });
     }
 
     @DeleteMapping("/items/{id}")
-    void deleteItem(@PathVariable Long id){
+    void deleteItem(@PathVariable String id){
         repository.deleteById(id);
     }
 
